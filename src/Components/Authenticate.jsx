@@ -1,4 +1,5 @@
-const Authenticate = () => {
+const Authenticate = ({ token }) => {
+  console.log(token)
   return (
     <>
       <h2>Authenticate</h2>

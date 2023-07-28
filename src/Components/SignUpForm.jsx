@@ -1,9 +1,10 @@
 import { useState } from "react";
 
-const SignUpForm = () => {
+const SignUpForm = ({ setToken }) => {
   const [username, setUsername] = useState(``);
   const [password, setPassword] = useState(``);
   const [error, setError] = useState(null);
+  const [message, setMessage] = useState(null);
 
   const updateUsernameInput = (event) => {
     setUsername(event.target.value);
@@ -15,7 +16,6 @@ const SignUpForm = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log(`hello`);
 
     try {
       const response = await fetch(
@@ -33,16 +33,18 @@ const SignUpForm = () => {
       );
       const data = await response.json();
 
+      setMessage(data.message);
+      setToken(data.token);
       console.log(data);
     } catch (error) {
-      console.log(error);
+      setError(error);
     }
   };
 
   return (
     <>
       <h2>Sign Up</h2>
-      {error ? <p>{error}</p> : null}
+      {error ? <p>{error}</p> : <p>{message}</p>}
       <form onSubmit={handleSubmit}>
         <label>
           Username:
