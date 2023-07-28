@@ -47,12 +47,12 @@ const SignUpForm = ({ setToken }) => {
       <form onSubmit={handleSubmit}>
         <label>
           Username:
-          <input type='text' value={username} onChange={updateUsernameInput} required />
+          <input type='text' value={username} onChange={updateUsernameInput} minLength={5} required />
         </label>
         <br />
         <label>
           Password:
-          <input type='password' value={password} onChange={updatePasswordInput} required />
+          <input type='password' value={password} onChange={updatePasswordInput} minLength={5} required />
         </label>
         <br />
         <button>Submit</button>
