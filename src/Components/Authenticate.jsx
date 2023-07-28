@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const Authenticate = ({ token }) => {
+const Authenticate = ({ token, setAuthData }) => {
   const [error, setError] = useState(null);
   const [message, setMessage] = useState(null);
 
@@ -19,6 +19,7 @@ const Authenticate = ({ token }) => {
       const data = await response.json();
 
       setMessage(data.message);
+      setAuthData(data.data);
     } catch (error) {
       setError(error);
     }
@@ -27,7 +28,8 @@ const Authenticate = ({ token }) => {
   return (
     <>
       <h2>Authenticate</h2>
-      {error ? <p>{error}</p> : <p>{message}</p>}
+      {error ? <p>{error}</p> : null}
+      {message ? <p>{message}</p> : null}
       <button onClick={handleClick}>Authenticate Token</button>
     </>
   );
