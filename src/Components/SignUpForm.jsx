@@ -35,7 +35,6 @@ const SignUpForm = ({ setToken }) => {
 
       setMessage(data.message);
       setToken(data.token);
-      console.log(data);
     } catch (error) {
       setError(error);
     }
